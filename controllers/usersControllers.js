@@ -73,14 +73,13 @@ const putUsers = async (req, res) => {
 
 const deleteUsers = async (req, res) => {
   // de esta manera accedemos a los datos que nos envian por la url
-  //   url parameters
+  //  url parameters
   const { id } = req.params;
-
-  // delete the user from the database physically
-  // const user = await User.findByIdAndDelete(id);
 
   // delete the user from the database logically
   const user = await User.findByIdAndUpdate(id, { estado: false });
+
+  // get the user that made the request
 
   res.json({
     user,

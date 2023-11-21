@@ -49,7 +49,8 @@ UserSchema.methods.toJSON = function () {
   // this.toObject() create a instance of the model
 
   // we extract the password  object
-  const { password, ...user } = this.toObject();
+  const { password, _id, ...user } = this.toObject();
+  user.uid = _id;
   return user;
 };
 
