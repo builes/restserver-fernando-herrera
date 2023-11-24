@@ -13,10 +13,6 @@ const validarJwt = async (req, res, next) => {
   try {
     const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
 
-    // si en un middleware modificamos el req, desde el siguiente middleware o  desde
-    // el controlador, tendremos disponible la modificacion
-    req.uid = uid;
-
     const userAuthenticated = await userModel.findById(uid);
 
     // verify if user exists
@@ -34,6 +30,10 @@ const validarJwt = async (req, res, next) => {
     }
 
     req.userAuthenticated = userAuthenticated;
+
+    // si en un middleware modificamos el req, desde el siguiente middleware o  desde
+    // el controlador, tendremos disponible la modificacion
+    req.uid = uid;
 
     next();
   } catch (error) {

@@ -6,7 +6,7 @@ const {
   putUsers,
   deleteUsers,
   postUsers,
-} = require("../controllers/usersControllers");
+} = require("../controllers/userControllers");
 const {
   isValidaRole,
   existEmail,
